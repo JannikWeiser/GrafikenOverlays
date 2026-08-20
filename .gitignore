@@ -1,0 +1,12 @@
+node_modules/
+
+# Hochgeladene Ecken-Einblendungen (Laufzeit-Uploads, gehoeren nicht ins Repo)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,204 @@
+.go-stage,
+.go-stage * {
+  box-sizing: border-box;
+}
+.go-stage {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  color: #fff;
+  --go-accent-1: #b5474e;
+  --go-accent-2: #7f3237;
+  --go-radius: 14px;
+}
+
+/* ---------- Ecken-Einblendungen ---------- */
+.go-corner {
+  position: absolute;
+  top: 32px;
+  max-width: 280px;
+  max-height: 160px;
+}
+/* transform-origin liegt jeweils auf der fixen Ecke, damit Skalieren
+   (siehe renderCorner) immer zu dieser Ecke hin verkleinert/vergroessert,
+   nicht zur Mitte. */
+.go-corner--left { left: 32px; transform-origin: top left; }
+.go-corner--right { right: 32px; transform-origin: top right; }
+.go-corner img,
+.go-corner video {
+  display: block;
+  max-width: 280px;
+  max-height: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---------- Namen-Overlay (Lower Third) ---------- */
+.go-names {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  height: 72px;
+}
+.go-athlete {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 48px;
+  background: rgba(10, 12, 16, var(--go-card-opacity, 0.82));
+  border-radius: var(--go-radius);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+/* DOM-Reihenfolge ist immer [bib, country, name]; rechts wird sie per
+   row-reverse gespiegelt, damit der Name jeweils zur Mitte zeigt. */
+.go-athlete--right { flex-direction: row-reverse; }
+.go-athlete--empty { visibility: hidden; }
+.go-athlete__bib {
+  flex: none;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+.go-athlete__country {
+  flex: none;
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.75;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.go-athlete__name {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Ergebnisliste ---------- */
+.go-results {
+  width: 1150px;
+  height: 760px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 14, 18, var(--go-card-opacity, 0.82));
+  border-radius: var(--go-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.go-results__header {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 26px;
+  background: linear-gradient(90deg, var(--go-accent-1), var(--go-accent-2));
+  font-size: 22px;
+  font-weight: 700;
+}
+.go-results__round { font-size: 16px; font-weight: 600; opacity: 0.85; }
+.go-results__tablewrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.go-results__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  table-layout: fixed;
+}
+.go-results__table th,
+.go-results__table td {
+  padding: 8px 16px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.go-results__table th:first-child,
+.go-results__table td:first-child { width: 56px; }
+.go-results__table th {
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.go-results__table tbody tr:nth-child(odd) { background: rgba(255, 255, 255, 0.04); }
+.go-results__table td:nth-child(2) { font-weight: 600; }
+.go-results__empty { text-align: center; opacity: 0.6; padding: 16px; }
+
+/* ---------- Turnierbaum ---------- */
+.go-bracket {
+  width: 1150px;
+  max-height: 760px;
+  overflow: hidden;
+  background: rgba(12, 14, 18, var(--go-card-opacity, 0.82));
+  border-radius: var(--go-radius);
+  padding: 18px 28px 22px;
+  min-width: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.go-bracket__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.go-bracket__empty { opacity: 0.6; padding: 12px 0; }
+.go-bracket__cols {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 32px;
+}
+.go-bracket__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  min-width: 210px;
+}
+.go-bracket__col--final {
+  justify-content: center;
+}
+.go-bracket__stage-name {
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: 0.65;
+  font-weight: 600;
+}
+.go-bracket__stage-name--small-final {
+  margin-top: 16px;
+}
+.go-heat {
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 14px;
+}
+.go-heat__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.go-heat__row + .go-heat__row { border-top: 1px solid rgba(0, 0, 0, 0.35); }
+.go-heat__row--winner {
+  background: linear-gradient(90deg, var(--go-accent-1), var(--go-accent-2));
+  font-weight: 700;
+}
+.go-heat__row--placeholder { opacity: 0.4; justify-content: center; }
+.go-heat__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.go-heat__time { flex: none; opacity: 0.85; }

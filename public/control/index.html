@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>Grafiken Control</title>
+<link rel="stylesheet" href="/shared/renderers.css" />
+<link rel="stylesheet" href="/shared/stage-positions.css" />
+<link rel="stylesheet" href="control.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__group">
+    <label>Tenant
+      <select id="hostSelect"></select>
+    </label>
+    <label>Wettkampf-ID
+      <input id="eventIdInput" type="text" inputmode="numeric" placeholder="z.B. 1594" />
+    </label>
+    <button id="loadEventBtn">Load-Event</button>
+    <span id="eventStatus" class="topbar__status"></span>
+  </div>
+  <div class="topbar__group">
+    <label>Hintergrundfarbe
+      <input id="bgColorInput" type="color" value="#00ff00" />
+    </label>
+    <label class="checkbox-row">
+      <input id="transparentBgInput" type="checkbox" />
+      Output transparent (kein Chroma-Hintergrund)
+    </label>
+    <label>Grafik-Deckkraft
+      <span class="range-row">
+        <input id="cardOpacityInput" type="range" min="0" max="1" step="0.01" value="0.82" />
+        <span id="cardOpacityValue" class="range-row__value">0.82</span>
+      </span>
+    </label>
+    <button id="offAirBtn" class="btn--ghost">Alles Aus</button>
+    <button id="copyLinkBtn">Copy Output Link</button>
+  </div>
+</header>
+
+<main class="columns">
+
+  <section class="column" data-type="names">
+    <h2>Namen Grafik</h2>
+    <label>Kategorie / Runde
+      <select class="categorySelect"></select>
+    </label>
+    <div class="row">
+      <label>Startnummer Links
+        <input class="bibLeft" type="text" placeholder="Bib" />
+      </label>
+      <label>Startnummer Rechts
+        <input class="bibRight" type="text" placeholder="Bib" />
+      </label>
+    </div>
+    <div class="preview-label">Vorschau</div>
+    <div class="preview preview--names">
+      <div class="go-stage previewStage"></div>
+    </div>
+    <button class="goLiveBtn">Namen Grafik Live</button>
+    <span class="onAirBadge">ON AIR</span>
+  </section>
+
+  <section class="column" data-type="results">
+    <h2>Ergebnisliste Grafik</h2>
+    <label>Kategorie / Runde
+      <select class="categorySelect"></select>
+    </label>
+    <div class="row">
+      <button class="pageBackBtn">◀ Seite zurück</button>
+      <button class="pageFwdBtn">Seite vor ▶</button>
+    </div>
+    <div class="preview-label">Vorschau</div>
+    <div class="preview preview--results">
+      <div class="go-stage previewStage"></div>
+    </div>
+    <button class="goLiveBtn">Ergebnisliste Grafik Live</button>
+    <span class="onAirBadge">ON AIR</span>
+  </section>
+
+  <section class="column" data-type="bracket">
+    <h2>Turnierbaum Grafik</h2>
+    <label>Kategorie / Runde
+      <select class="categorySelect"></select>
+    </label>
+    <div class="row row--placeholder" aria-hidden="true"></div>
+    <div class="preview-label">Vorschau</div>
+    <div class="preview preview--bracket">
+      <div class="go-stage previewStage"></div>
+    </div>
+    <button class="goLiveBtn">Turnierbaum Grafik Live</button>
+    <span class="onAirBadge">ON AIR</span>
+  </section>
+
+  <section class="column" data-type="browser">
+    <h2>Webseite Grafik</h2>
+    <label>URL
+      <input class="urlInput" type="url" placeholder="https://…" />
+    </label>
+    <div class="row row--placeholder" aria-hidden="true"></div>
+    <div class="preview-label">Vorschau</div>
+    <div class="preview preview--browser">
+      <div class="go-stage previewStage"></div>
+    </div>
+    <button class="goLiveBtn">Webseite Grafik Live</button>
+    <span class="onAirBadge">ON AIR</span>
+  </section>
+
+</main>
+
+<section class="corner-panel">
+  <h2>Ecken-Einblendungen</h2>
+  <div class="corner-panel__grid">
+    <div class="corner-slot" data-slot="left">
+      <h3>Oben Links</h3>
+      <div class="corner-slot__preview">Kein Bild/Video</div>
+      <input type="file" class="corner-slot__file" accept="image/png,image/jpeg,video/mp4,video/webm" />
+      <label>Größe
+        <input type="range" class="corner-slot__scale" min="0.3" max="2" step="0.05" value="1" />
+      </label>
+      <div class="row">
+        <button class="corner-slot__toggle">Live</button>
+        <button class="corner-slot__remove btn--ghost">Entfernen</button>
+      </div>
+      <span class="corner-slot__status"></span>
+    </div>
+    <div class="corner-slot" data-slot="right">
+      <h3>Oben Rechts</h3>
+      <div class="corner-slot__preview">Kein Bild/Video</div>
+      <input type="file" class="corner-slot__file" accept="image/png,image/jpeg,video/mp4,video/webm" />
+      <label>Größe
+        <input type="range" class="corner-slot__scale" min="0.3" max="2" step="0.05" value="1" />
+      </label>
+      <div class="row">
+        <button class="corner-slot__toggle">Live</button>
+        <button class="corner-slot__remove btn--ghost">Entfernen</button>
+      </div>
+      <span class="corner-slot__status"></span>
+    </div>
+  </div>
+  <p class="corner-panel__hint">PNG, JPG, MP4 oder WebM · max. 30&nbsp;MB pro Datei · ein neuer Upload ersetzt automatisch die vorherige Datei in diesem Eck (nie mehr als 2 Dateien gleichzeitig gespeichert).</p>
+</section>
+
+<script src="/shared/renderers.js"></script>
+<script src="control.js"></script>
+</body>
+</html>

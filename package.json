@@ -1,0 +1,16 @@
+{
+  "name": "grafiken-overlays",
+  "version": "1.0.0",
+  "description": "Livestream-Grafiken (Chroma-Key) fuer Kletterwettkaempfe, gespeist aus der results.info API",
+  "private": true,
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^2.2.0",
+    "ws": "^8.18.0"
+  }
+}

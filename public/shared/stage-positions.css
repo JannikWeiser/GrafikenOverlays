@@ -1,0 +1,27 @@
+/* Positionierung der Grafiken auf der 1920x1080-Buehne.
+   Wird sowohl von der Output-Seite als auch von der Control-Vorschau genutzt,
+   damit die Vorschau exakt dem echten Output entspricht. */
+.go-position {
+  position: absolute;
+}
+.go-position--names {
+  left: 64px;
+  right: 64px;
+  bottom: 64px;
+}
+.go-position--results {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.go-position--bracket {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.go-position--browser {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
